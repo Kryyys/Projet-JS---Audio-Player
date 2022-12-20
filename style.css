@@ -23,6 +23,27 @@ main {
     border-radius: 15px 15px 0 0;
 }
 
+#small_cover img {
+    border-bottom-left-radius: 15px;
+}
+/* .albumcover {
+    background-image: url();
+    background-size: contain;
+    width: 475px;
+    height : 475px;
+}
+
+.first {    
+    width: 475px;
+    height : 475px;
+}
+
+.second {
+    width: 150px;
+    height: 150px;
+    border-bottom-left-radius: 15px;
+} */
+
 /* HIDE BUTTON */
 
 #hide {

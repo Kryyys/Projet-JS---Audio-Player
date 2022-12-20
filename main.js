@@ -9,21 +9,22 @@ const stop = document.querySelector(".stop");
 
 // Barre de Temps
 const currentTime = document.querySelector("#current_time");
-const songDuration = document.querySelector("#song_duration");
+let songTime = document.querySelector(".song_duration");
 
-let songPlay = document.querySelector("audio");
+let audio = document.querySelector("audio");
+
 
 
 
 // Liste des musiques et leurs instances
 class Song {
-    constructor(number, title, artist, cover, url, song_duration) {
+    constructor(number, title, artist, cover, url, songDuration) {
         this.number = number,
         this.title = title,
         this.artist = artist,
         this.cover = cover,
         this.url = url,
-        this.song_duration = song_duration
+        this.songDuration = songDuration
     }
 };
 
@@ -67,10 +68,10 @@ artistCells.forEach(element => {
 playPauseButton.addEventListener("click", (e) => {
     if (playPauseButton.classList.contains("play")) {
         playPauseButton.classList.replace("play", "pause");
-        songPlay.play();
+        audio.play();
     } else if (playPauseButton.classList.contains("pause")) {
         playPauseButton.classList.replace("pause", "play");
-        songPlay.pause();
+        audio.pause();
     };
 });
 
@@ -81,11 +82,16 @@ let music = document.querySelectorAll(".music");
 music.forEach(element => {
     element.addEventListener("click", (e) =>  {
         let indexMusic = element.firstElementChild.innerHTML;
+        let albumCover = document.querySelector(".album_cover");
+        let albumCoverSecond = document.querySelector(".album_cover2")
 
-        songPlay.src = songArray[indexMusic-1].url;
-        songPlay.play();
         playPauseButton.classList.replace("play", "pause");
+        audio.src = songArray[indexMusic-1].url;
+        audio.play();
 
+        songTime.textContent = songArray[indexMusic-1].songDuration;
+        albumCover.src = songArray[indexMusic-1].cover;
+        albumCoverSecond.src = songArray[indexMusic-1].cover;
     })
 });
 
