@@ -15,6 +15,7 @@ let songTime = document.querySelector(".song_duration");
     // Audio
 let audio = document.querySelector("audio");
 let music = document.querySelectorAll(".music");
+let sound = document.querySelector("#volume");
 
     // Display les Titres, Artistes et Cover
 let albumCover = document.querySelector(".album_cover");
@@ -25,6 +26,7 @@ let titleBottom = document.querySelector("#song_title_bottom");
 let artistBottom = document.querySelector("#artist_name_bottom");
 let titleRight = document.querySelector("#title_right");
 let enLecture = document.querySelector("#lecture");
+
 
 // Liste des musiques et leurs instances
 class Song {
@@ -134,4 +136,12 @@ music.forEach(element => {
 
     })
 });
+
+// Fonction pour le SON 
+sound.addEventListener("change", (e) => {
+    audio.volume = sound.value;
+  });
+
+// Fonction pour la barre de TEMPS
+
 

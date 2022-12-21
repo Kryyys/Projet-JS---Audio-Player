@@ -144,8 +144,8 @@
                     <img src="Photos/loop.png"  class="loop" width="35px" id="loop" alt="">
                 </div>
                 <div id="song_slider">
-                    <span class="current_time">00:00</span>
-                    <input type="range" value="0" class="seek-bar">
+                    <span class="current_time"></span>
+                    <input type="range" min="0" step="1" value="0" class="seek-bar">
                     <span class="song_duration"></span>
                 </div>
 
@@ -154,7 +154,7 @@
             </div>
             <div id="sound">
                 <img src="Photos/sound.png" width="35px" >
-                <input type="range" class="amplitude-volume-slider" step=".1"/>
+                <input type="range" id="volume" min="0" max="1" value="1" step="0.01"/>
             </div>
         </div>
 
