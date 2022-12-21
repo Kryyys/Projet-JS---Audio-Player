@@ -2,15 +2,16 @@
     // Boutons
 const hide = document.querySelector("#hide");
 const playPauseButton = document.querySelector(".playPause");
-const shuffle = document.querySelector(".shuffle");
-const loop = document.querySelector(".loop");
-const rewind = document.querySelector(".rewind");
-const fastForward = document.querySelector(".fast");
-const stop = document.querySelector(".stop");
+const shuffle = document.querySelector("#shuffle");
+const loop = document.querySelector("#loop");
+const rewind = document.querySelector("#rewind");
+const fastForward = document.querySelector("#fast");
+const stop = document.querySelector("#stop");
 
     // Barre de Temps
-const currentTime = document.querySelector("#current_time");
+let aNow = document.querySelector(".current_time");
 let songTime = document.querySelector(".song_duration");
+let seekBar = document.querySelector(".seek_bar");
 
     // Audio
 let audio = document.querySelector("audio");
@@ -74,6 +75,7 @@ artistCells.forEach(element => {
     };
 });
 
+
 // Fonction pour le bouton HIDE
 
 hide.addEventListener("click", (e) => {
@@ -99,10 +101,18 @@ playPauseButton.addEventListener("click", (e) => {
     };
 });
 
+
 // Fonction pour le bouton STOP
 stop.addEventListener("click", (e) => {
-    music.reset();
-})
+    audio.pause();
+    audio.currentTime = 0;
+
+    if (playPauseButton.classList.contains("pause")) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    };
+    
+});
 
 // Fonction pour les bouton REWIND ET NEXT
 
@@ -132,16 +142,70 @@ music.forEach(element => {
         titleBottom.textContent = songArray[indexMusic-1].title;
         artistBottom.textContent = songArray[indexMusic-1].artist;
 
-        songTime.textContent = songArray[indexMusic-1].songDuration;
+        // songTime.textContent = songArray[indexMusic-1].songDuration;
 
     })
 });
 
+
 // Fonction pour le SON 
+
 sound.addEventListener("change", (e) => {
     audio.volume = sound.value;
-  });
+});
+
 
 // Fonction pour la barre de TEMPS
+
+// Mise en place du temps en hh:mm:ss
+let timeString = (secs) => {
+    let ss = Math.floor(secs),
+    hh = Math.floor(ss / 3600),
+    mm = Math.floor((ss - (hh * 3600)) / 60);
+    ss = ss - (hh * 3600) - (mm * 60);
+
+    // Retourner le temps
+    if (hh>0) { 
+        mm = mm<10 ? "0"+mm : mm; 
+    };
+
+    ss = ss<10 ? "0"+ss : ss;
+    return hh>0 ? `${hh}:${mm}:${ss}` : `${mm}:${ss}` ;
+};
+
+// Initialiser le temps
+audio.addEventListener("loadedmetadata", (e) => {
+    aNow.innerHTML = timeString(0);
+    songTime.innerHTML = timeString(audio.duration);
+});
+
+// Update le temps
+audio.addEventListener("timeupdate", (e) => {
+    aNow.innerHTML = timeString(audio.currentTime);
+});
+
+audio.addEventListener("loadedmetadata", (e) => {
+    // Plafond de temps pour la seekbar
+    seekBar.max = Math.floor(audio.duration);
+
+    // Changer le temps de la seek bar
+    let aSeeking = false; 
+    seekBar.addEventListener("input", (e) => {
+        aSeeking = true; 
+    });
+
+    seekBar.addEventListener("change", (e) => {
+        audio.currentTime = seekBar.value;
+        if (!audio.paused) { 
+            audio.play(); 
+        };
+        aSeeking = false;
+    });
+
+    // Changer le temps de la seekbar durant la lecture
+    audio.addEventListener("timeupdate", () => {
+        if (!aSeeking) { seekBar.value = Math.floor(audio.currentTime); }
+    });
+});
 
 
