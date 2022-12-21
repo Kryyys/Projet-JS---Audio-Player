@@ -115,13 +115,64 @@ stop.addEventListener("click", (e) => {
     
 });
 
+
 // Fonction pour les bouton REWIND ET NEXT
+fastForward.addEventListener("click", (e) => {
+    let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
+    if(indexTrack > songArray.length-1) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    }
+    audio.src = songArray[indexTrack].url;
+    audio.play();
+
+    albumCover.src = songArray[indexTrack].cover;
+    titleLeft.textContent = songArray[indexTrack].title;
+    artistLeft.textContent = songArray[indexTrack].artist;
+
+    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
+
+    albumCoverSecond.src = songArray[indexTrack].cover;
+    titleBottom.textContent = songArray[indexTrack].title;
+    artistBottom.textContent = songArray[indexTrack].artist;
+    songTime.textContent = songArray[indexTrack].songDuration;
+});
+
+rewind.addEventListener("click", (e) => {
+    let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))-1;
+    if(indexTrack > songArray.length-1) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    }
+    audio.src = songArray[indexTrack].url;
+    audio.play();
+
+    albumCover.src = songArray[indexTrack].cover;
+    titleLeft.textContent = songArray[indexTrack].title;
+    artistLeft.textContent = songArray[indexTrack].artist;
+
+    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
+
+    albumCoverSecond.src = songArray[indexTrack].cover;
+    titleBottom.textContent = songArray[indexTrack].title;
+    artistBottom.textContent = songArray[indexTrack].artist;
+    songTime.textContent = songArray[indexTrack].songDuration;
+});
+
 
 // Fonction pour le bouton SHUFFLE
 
 shuffle.addEventListener("click", (e) => {
-    
-})
+    let randomMusic = songArray[Math.floor(Math.random() * songArray.length)];
+    if (shuffle.classList.contains("off")) {
+        shuffle.classList.replace("off", "on");
+        audio.src = randomMusic.url;
+        audio.play();
+    } else if (shuffle.classList.contains("on")) {
+        shuffle.classList.replace("on", "off");
+    };
+});
+
 
 // Fonction pour le bouton LOOP
 
@@ -138,11 +189,14 @@ loop.addEventListener("click", (e) => {
     };
 });
 
+
 // Démarrage de la musique, mise en place des titres, artistes et covers
+// let indexMusic=0;
 
 music.forEach(element => {
+    let indexMusic = element.firstElementChild.innerHTML;
+    element.setAttribute("data-id", indexMusic);
     element.addEventListener("click", (e) =>  {
-        let indexMusic = element.firstElementChild.innerHTML;
         playPauseButton.classList.replace("play", "pause");
         audio.src = songArray[indexMusic-1].url;
         audio.play();
@@ -158,22 +212,25 @@ music.forEach(element => {
         titleBottom.textContent = songArray[indexMusic-1].title;
         artistBottom.textContent = songArray[indexMusic-1].artist;
 
-        audio.addEventListener("ended", (e) => {
-                audio.src = songArray[indexMusic++].url;
-                audio.play();
         
-                albumCover.src = songArray[indexMusic-1].cover;
-                titleLeft.textContent = songArray[indexMusic-1].title;
-                artistLeft.textContent = songArray[indexMusic-1].artist;
-        
-                titleRight.textContent = songArray[indexMusic-1].title + "   -   " + songArray[indexMusic-1].artist;
-        
-                albumCoverSecond.src = songArray[indexMusic-1].cover;
-                titleBottom.textContent = songArray[indexMusic-1].title;
-                artistBottom.textContent = songArray[indexMusic-1].artist;
-                songTime.textContent = songArray[indexMusic-1].songDuration;
-        });
     });
+});
+
+audio.addEventListener("ended", (e) => {
+    let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
+    audio.src = songArray[indexMusic++].url;
+    audio.play();
+
+    albumCover.src = songArray[indexMusic-1].cover;
+    titleLeft.textContent = songArray[indexMusic-1].title;
+    artistLeft.textContent = songArray[indexMusic-1].artist;
+
+    titleRight.textContent = songArray[indexMusic-1].title + "   -   " + songArray[indexMusic-1].artist;
+
+    albumCoverSecond.src = songArray[indexMusic-1].cover;
+    titleBottom.textContent = songArray[indexMusic-1].title;
+    artistBottom.textContent = songArray[indexMusic-1].artist;
+    songTime.textContent = songArray[indexMusic-1].songDuration;
 });
 
 
@@ -236,5 +293,3 @@ audio.addEventListener("loadedmetadata", (e) => {
         if (!aSeeking) { seekBar.value = Math.floor(audio.currentTime); }
     });
 });
-
-

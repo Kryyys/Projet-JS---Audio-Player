@@ -236,26 +236,33 @@ tbody tr:nth-of-type(odd) {
 
 /* LOOP */
 
-.inactive {
-    background-image: url(Photos/loop_grey.png);
+#loop {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 35px;
     width: 40px;
     height: 40px;
+}
+
+.inactive {
+    background-image: url(Photos/loop_grey.png);
 }
 
 .inactive:hover {
     background-image: url(Photos/loop.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 35px;
-    width: 40px;
-    height: 40px;
 }
 
 .active {
     background-image: url(Photos/loop_active.png);
+}
+
+.active_one {
+    background-image: url(Photos/loop_one_active.png);
+}
+
+/* SHUFFLE */
+
+#shuffle {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 35px;
@@ -263,13 +270,16 @@ tbody tr:nth-of-type(odd) {
     height: 40px;
 }
 
-.active_one {
-    background-image: url(Photos/loop_one_active.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 35px;
-    width: 40px;
-    height: 40px;
+.off {
+    background-image: url(Photos/shuffle_grey.png);
+}
+
+.off:hover {
+    background-image: url(Photos/shuffle.png);
+}
+
+.on {
+    background-image: url(Photos/shuffle_active.png);
 }
 
 /* BARRE DE TEMPS */
