@@ -103,6 +103,7 @@ playPauseButton.addEventListener("click", (e) => {
 
 
 // Fonction pour le bouton STOP
+
 stop.addEventListener("click", (e) => {
     audio.pause();
     audio.currentTime = 0;
@@ -118,15 +119,30 @@ stop.addEventListener("click", (e) => {
 
 // Fonction pour le bouton SHUFFLE
 
+shuffle.addEventListener("click", (e) => {
+    
+})
+
 // Fonction pour le bouton LOOP
 
+loop.addEventListener("click", (e) => {
+    if (loop.classList.contains("inactive")) {
+        loop.classList.replace("inactive", "active");
+        audio.loop = false;
+    } else if (loop.classList.contains("active")) {
+        loop.classList.replace("active", "active_one");
+        audio.loop = true;
+    } else if (loop.classList.contains("active_one")) {
+        loop.classList.replace("active_one", "inactive");
+        audio.loop = false;
+    };
+});
 
 // Démarrage de la musique, mise en place des titres, artistes et covers
 
 music.forEach(element => {
     element.addEventListener("click", (e) =>  {
         let indexMusic = element.firstElementChild.innerHTML;
-
         playPauseButton.classList.replace("play", "pause");
         audio.src = songArray[indexMusic-1].url;
         audio.play();
@@ -142,9 +158,22 @@ music.forEach(element => {
         titleBottom.textContent = songArray[indexMusic-1].title;
         artistBottom.textContent = songArray[indexMusic-1].artist;
 
-        // songTime.textContent = songArray[indexMusic-1].songDuration;
-
-    })
+        audio.addEventListener("ended", (e) => {
+                audio.src = songArray[indexMusic++].url;
+                audio.play();
+        
+                albumCover.src = songArray[indexMusic-1].cover;
+                titleLeft.textContent = songArray[indexMusic-1].title;
+                artistLeft.textContent = songArray[indexMusic-1].artist;
+        
+                titleRight.textContent = songArray[indexMusic-1].title + "   -   " + songArray[indexMusic-1].artist;
+        
+                albumCoverSecond.src = songArray[indexMusic-1].cover;
+                titleBottom.textContent = songArray[indexMusic-1].title;
+                artistBottom.textContent = songArray[indexMusic-1].artist;
+                songTime.textContent = songArray[indexMusic-1].songDuration;
+        });
+    });
 });
 
 

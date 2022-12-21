@@ -138,10 +138,10 @@
                 <div id="button">
                     <img src="Photos/shuffle.png" width="35px" id="shuffle" alt="">
                     <img src="Photos/rewind.png" width="35px" id="rewind" alt="">
-                    <div class="playPause play"></div>
-                    <img src="Photos/stop.png" width="35px" id="stop" alt="">
+                    <span class="playPause play"></span>
+                    <span id="stop"></span>
                     <img src="Photos/fast_forward.png" width="35px" id="fast_forward" alt="">
-                    <img src="Photos/loop_grey.png" width="35px" id="loop" alt="">
+                    <span id="loop" class="inactive"></span>
                 </div>
                 <div id="song_slider">
                     <span class="current_time"></span>
@@ -154,7 +154,7 @@
             </div>
             <div id="sound">
                 <img src="Photos/sound.png" width="35px" >
-                <input type="range" id="volume" min="0" max="1" value="1" width="1000px" step="0.01"/>
+                <input type="range" id="volume" min="0" max="1" value="1" step="0.05"/>
             </div>
         </div>
 

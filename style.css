@@ -144,7 +144,7 @@ tbody tr:nth-of-type(odd) {
 }
 
 #in_play {
-    width : 33%;
+    width : 30%;
     color: white;
     display: flex;
     flex-direction: row;
@@ -179,6 +179,7 @@ tbody tr:nth-of-type(odd) {
 
 #loop:hover {
     cursor: pointer;
+
 }
 
 #button {
@@ -214,6 +215,64 @@ tbody tr:nth-of-type(odd) {
     width: 80px;
     height: 80px;
 }
+
+#stop {
+    background-image: url(Photos/stop_grey.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+#stop:hover {
+    background-image: url(Photos/stop.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+/* LOOP */
+
+.inactive {
+    background-image: url(Photos/loop_grey.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+.inactive:hover {
+    background-image: url(Photos/loop.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+.active {
+    background-image: url(Photos/loop_active.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+.active_one {
+    background-image: url(Photos/loop_one_active.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+/* BARRE DE TEMPS */
 
 #song_slider {
     height: 75px;
