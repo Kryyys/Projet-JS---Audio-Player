@@ -26,27 +26,10 @@ main {
 #small_cover img {
     border-bottom-left-radius: 15px;
 }
-/* .albumcover {
-    background-image: url();
-    background-size: contain;
-    width: 475px;
-    height : 475px;
-}
-
-.first {    
-    width: 475px;
-    height : 475px;
-}
-
-.second {
-    width: 150px;
-    height: 150px;
-    border-bottom-left-radius: 15px;
-} */
 
 /* HIDE BUTTON */
 
-#hide {
+#left_bar {
     width: 4%;
     height: 100%;
     display: flex;
@@ -72,7 +55,7 @@ main {
     margin: 25px;
 }
 
-#artist {
+#artist_name {
     color : white;
     font-size: 18px;
 }
@@ -91,10 +74,14 @@ main {
     display: flex;
     align-items: center;
     background-color: black;
-    color: white;
     height : 15%;
     width: 100%;
     border-radius: 0 15px 0 0;
+}
+
+#title_right {
+    color: white;
+    font-size: 25px;
 }
 
 #title img {
@@ -169,6 +156,19 @@ tbody tr:nth-of-type(odd) {
 #en_lecture {
     display: flex;
     flex-direction: column;
+    margin-left: 25px;
+    margin-top: 60px;
+    height: 150px;
+}
+
+#lecture {
+    margin-bottom : 20px;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+#artist_name_bottom {
+    font-weight: lighter;
 }
 
 /* BUTTON NAV */
@@ -225,15 +225,20 @@ tbody tr:nth-of-type(odd) {
     width: 100%;
     height: 5px;
     border-radius: 10px;
-    background: #bab9b9;
+    accent-color : #3957F1;
     overflow: hidden;
     cursor: pointer;
 }
 
-.seek-bar::-webkit-slider-thumb{
+/* .seek-bar::-webkit-slider-thumb{
     -webkit-appearance: none;
     width: 1px;
     height: 20px;
+} */
+
+.current_time, .song_duration {
+    font-size: 14px;
+    margin: 10px;
 }
 
 /* SOUND */

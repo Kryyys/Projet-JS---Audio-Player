@@ -1,5 +1,6 @@
 // CONSTANTES
-// Boutons
+    // Boutons
+const hide = document.querySelector("#hide");
 const playPauseButton = document.querySelector(".playPause");
 const shuffle = document.querySelector(".shuffle");
 const loop = document.querySelector(".loop");
@@ -7,14 +8,23 @@ const rewind = document.querySelector(".rewind");
 const fastForward = document.querySelector(".fast");
 const stop = document.querySelector(".stop");
 
-// Barre de Temps
+    // Barre de Temps
 const currentTime = document.querySelector("#current_time");
 let songTime = document.querySelector(".song_duration");
 
+    // Audio
 let audio = document.querySelector("audio");
+let music = document.querySelectorAll(".music");
 
-
-
+    // Display les Titres, Artistes et Cover
+let albumCover = document.querySelector(".album_cover");
+let albumCoverSecond = document.querySelector(".album_cover2");
+let titleLeft = document.querySelector("#song_title");
+let artistLeft = document.querySelector("#artist_name");
+let titleBottom = document.querySelector("#song_title_bottom");
+let artistBottom = document.querySelector("#artist_name_bottom");
+let titleRight = document.querySelector("#title_right");
+let enLecture = document.querySelector("#lecture");
 
 // Liste des musiques et leurs instances
 class Song {
@@ -29,7 +39,7 @@ class Song {
 };
 
 let death = new Song ("1", "Death by Glamour", "Toby Fox", "Photos/death.webp", "Tracks/death.mp3", "2:14");
-let ezio = new Song("2","Ezio's Familly", "Jesper Kyd", "Photos/ezio.jpg", "Tracks/ezio.mp3", "3:59");
+let ezio = new Song("2","Ezio's Family", "Jesper Kyd", "Photos/ezio.jpg", "Tracks/ezio.mp3", "3:59");
 let colossus = new Song("3","Dark Colossus", "Rozen", "Photos/colossus.jpg", "Tracks/colossus.mp3", "5:02");
 let vordt = new Song("4","Vordt of the Boreal Valley", "Motoi Sakuraba", "Photos/DS.jpg", "Tracks/Vordt.mp3", "6:14");
 
@@ -62,6 +72,18 @@ artistCells.forEach(element => {
     };
 });
 
+// Fonction pour le bouton HIDE
+
+hide.addEventListener("click", (e) => {
+    if (document.getElementById("cover").style.display = "flex") {
+        document.getElementById("cover").style.display = "none";
+        document.getElementById("list").style.width = "96%";
+    } else {
+        document.getElementById("cover").style.display = "flex";
+        document.getElementById("list").style.width = "50%";
+    };
+});
+
 
 // Fonction pour le bouton PLAY/PAUSE
 
@@ -75,23 +97,41 @@ playPauseButton.addEventListener("click", (e) => {
     };
 });
 
+// Fonction pour le bouton STOP
+stop.addEventListener("click", (e) => {
+    music.reset();
+})
 
-// Faire jouer la musique
-let music = document.querySelectorAll(".music");
+// Fonction pour les bouton REWIND ET NEXT
+
+// Fonction pour le bouton SHUFFLE
+
+// Fonction pour le bouton LOOP
+
+
+// Démarrage de la musique, mise en place des titres, artistes et covers
 
 music.forEach(element => {
     element.addEventListener("click", (e) =>  {
         let indexMusic = element.firstElementChild.innerHTML;
-        let albumCover = document.querySelector(".album_cover");
-        let albumCoverSecond = document.querySelector(".album_cover2")
 
         playPauseButton.classList.replace("play", "pause");
         audio.src = songArray[indexMusic-1].url;
         audio.play();
 
-        songTime.textContent = songArray[indexMusic-1].songDuration;
         albumCover.src = songArray[indexMusic-1].cover;
+        titleLeft.textContent = songArray[indexMusic-1].title;
+        artistLeft.textContent = songArray[indexMusic-1].artist;
+
+        titleRight.textContent = songArray[indexMusic-1].title + "   -   " + songArray[indexMusic-1].artist;
+
         albumCoverSecond.src = songArray[indexMusic-1].cover;
+        enLecture.textContent = "EN LECTURE";
+        titleBottom.textContent = songArray[indexMusic-1].title;
+        artistBottom.textContent = songArray[indexMusic-1].artist;
+
+        songTime.textContent = songArray[indexMusic-1].songDuration;
+
     })
 });
 
