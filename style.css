@@ -190,6 +190,8 @@ tbody tr:nth-of-type(odd) {
     height: 75px;
 }
 
+/* PLAY PAUSE */
+
 .play:hover {
     background-size: 80px;
 }
@@ -216,6 +218,8 @@ tbody tr:nth-of-type(odd) {
     height: 80px;
 }
 
+/* STOP */
+
 #stop {
     background-image: url(Photos/stop_grey.png);
     background-repeat: no-repeat;
@@ -227,6 +231,46 @@ tbody tr:nth-of-type(odd) {
 
 #stop:hover {
     background-image: url(Photos/stop.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+/* PREVIOUS */
+
+#rewind {
+    background-image: url(Photos/rewind_grey.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+#rewind:hover {
+    background-image: url(Photos/rewind.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+/* NEXT */
+
+#fast {
+    background-image: url(Photos/next_grey.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    width: 40px;
+    height: 40px;
+}
+
+#fast:hover {
+    background-image: url(Photos/next.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 35px;

@@ -1,4 +1,4 @@
-// CONSTANTES
+// CONSTANTES ET VARIABLES
     // Boutons
 const hide = document.querySelector("#hide");
 const playPauseButton = document.querySelector(".playPause");
@@ -76,123 +76,9 @@ artistCells.forEach(element => {
 });
 
 
-// Fonction pour le bouton HIDE
-
-hide.addEventListener("click", (e) => {
-    if (document.getElementById("cover").style.display = "flex") {
-        document.getElementById("cover").style.display = "none";
-        document.getElementById("list").style.width = "96%";
-    } else {
-        document.getElementById("cover").style.display = "flex";
-        document.getElementById("list").style.width = "50%";
-    };
-});
-
-
-// Fonction pour le bouton PLAY/PAUSE
-
-playPauseButton.addEventListener("click", (e) => {
-    if (playPauseButton.classList.contains("play")) {
-        playPauseButton.classList.replace("play", "pause");
-        audio.play();
-    } else if (playPauseButton.classList.contains("pause")) {
-        playPauseButton.classList.replace("pause", "play");
-        audio.pause();
-    };
-});
-
-
-// Fonction pour le bouton STOP
-
-stop.addEventListener("click", (e) => {
-    audio.pause();
-    audio.currentTime = 0;
-
-    if (playPauseButton.classList.contains("pause")) {
-        playPauseButton.classList.replace("pause", "play");
-        audio.pause();
-    };
-    
-});
-
-
-// Fonction pour les bouton REWIND ET NEXT
-fastForward.addEventListener("click", (e) => {
-    let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
-    if(indexTrack > songArray.length-1) {
-        playPauseButton.classList.replace("pause", "play");
-        audio.pause();
-    }
-    audio.src = songArray[indexTrack].url;
-    audio.play();
-
-    albumCover.src = songArray[indexTrack].cover;
-    titleLeft.textContent = songArray[indexTrack].title;
-    artistLeft.textContent = songArray[indexTrack].artist;
-
-    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
-
-    albumCoverSecond.src = songArray[indexTrack].cover;
-    titleBottom.textContent = songArray[indexTrack].title;
-    artistBottom.textContent = songArray[indexTrack].artist;
-    songTime.textContent = songArray[indexTrack].songDuration;
-});
-
-rewind.addEventListener("click", (e) => {
-    let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))-1;
-    if(indexTrack > songArray.length-1) {
-        playPauseButton.classList.replace("pause", "play");
-        audio.pause();
-    }
-    audio.src = songArray[indexTrack].url;
-    audio.play();
-
-    albumCover.src = songArray[indexTrack].cover;
-    titleLeft.textContent = songArray[indexTrack].title;
-    artistLeft.textContent = songArray[indexTrack].artist;
-
-    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
-
-    albumCoverSecond.src = songArray[indexTrack].cover;
-    titleBottom.textContent = songArray[indexTrack].title;
-    artistBottom.textContent = songArray[indexTrack].artist;
-    songTime.textContent = songArray[indexTrack].songDuration;
-});
-
-
-// Fonction pour le bouton SHUFFLE
-
-shuffle.addEventListener("click", (e) => {
-    let randomMusic = songArray[Math.floor(Math.random() * songArray.length)];
-    if (shuffle.classList.contains("off")) {
-        shuffle.classList.replace("off", "on");
-        audio.src = randomMusic.url;
-        audio.play();
-    } else if (shuffle.classList.contains("on")) {
-        shuffle.classList.replace("on", "off");
-    };
-});
-
-
-// Fonction pour le bouton LOOP
-
-loop.addEventListener("click", (e) => {
-    if (loop.classList.contains("inactive")) {
-        loop.classList.replace("inactive", "active");
-        audio.loop = false;
-    } else if (loop.classList.contains("active")) {
-        loop.classList.replace("active", "active_one");
-        audio.loop = true;
-    } else if (loop.classList.contains("active_one")) {
-        loop.classList.replace("active_one", "inactive");
-        audio.loop = false;
-    };
-});
-
-
 // Démarrage de la musique, mise en place des titres, artistes et covers
-// let indexMusic=0;
 
+// Au click sur une cellule de la liste
 music.forEach(element => {
     let indexMusic = element.firstElementChild.innerHTML;
     element.setAttribute("data-id", indexMusic);
@@ -216,6 +102,7 @@ music.forEach(element => {
     });
 });
 
+// Quand la musique finit
 audio.addEventListener("ended", (e) => {
     let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
     audio.src = songArray[indexMusic++].url;
@@ -290,6 +177,131 @@ audio.addEventListener("loadedmetadata", (e) => {
 
     // Changer le temps de la seekbar durant la lecture
     audio.addEventListener("timeupdate", () => {
-        if (!aSeeking) { seekBar.value = Math.floor(audio.currentTime); }
+        if (!aSeeking) { 
+            seekBar.value = Math.floor(audio.currentTime); 
+        }
     });
 });
+
+
+// Fonction pour le bouton HIDE
+
+hide.addEventListener("click", (e) => {
+    if (document.getElementById("cover").style.display = "flex") {
+        document.getElementById("cover").style.display = "none";
+        document.getElementById("list").style.width = "96%";
+    } else {
+        document.getElementById("cover").style.display = "flex";
+        document.getElementById("list").style.width = "50%";
+    };
+});
+
+
+// Fonction pour le bouton PLAY/PAUSE
+
+playPauseButton.addEventListener("click", (e) => {
+    if (playPauseButton.classList.contains("play")) {
+        playPauseButton.classList.replace("play", "pause");
+        audio.play();
+    } else if (playPauseButton.classList.contains("pause")) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    };
+});
+
+
+// Fonction pour le bouton STOP
+
+stop.addEventListener("click", (e) => {
+    audio.pause();
+    audio.currentTime = 0;
+
+    if (playPauseButton.classList.contains("pause")) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    };
+    
+});
+
+
+// Fonction pour les bouton PREVIOUS ET NEXT
+
+// NEXT
+fastForward.addEventListener("click", (e) => {
+    let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
+
+    if(indexTrack > songArray.length-1) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    } else if (playPauseButton.classList.contains("play")) {
+        playPauseButton.classList.replace("play", "pause")
+    };
+
+    audio.src = songArray[indexTrack].url;
+    audio.play();
+
+    albumCover.src = songArray[indexTrack].cover;
+    titleLeft.textContent = songArray[indexTrack].title;
+    artistLeft.textContent = songArray[indexTrack].artist;
+    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
+    albumCoverSecond.src = songArray[indexTrack].cover;
+    titleBottom.textContent = songArray[indexTrack].title;
+    artistBottom.textContent = songArray[indexTrack].artist;
+    songTime.textContent = songArray[indexTrack].songDuration;
+});
+
+// PREVIOUS
+rewind.addEventListener("click", (e) => {
+    let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))-1;
+
+    if(indexTrack > songArray.length-1) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    } else if (playPauseButton.classList.contains("play")) {
+        playPauseButton.classList.replace("play", "pause")
+    };
+
+    audio.src = songArray[indexTrack].url;
+    audio.play();
+
+    albumCover.src = songArray[indexTrack].cover;
+    titleLeft.textContent = songArray[indexTrack].title;
+    artistLeft.textContent = songArray[indexTrack].artist;
+    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
+    albumCoverSecond.src = songArray[indexTrack].cover;
+    titleBottom.textContent = songArray[indexTrack].title;
+    artistBottom.textContent = songArray[indexTrack].artist;
+    songTime.textContent = songArray[indexTrack].songDuration;
+});
+
+
+// Fonction pour le bouton SHUFFLE
+
+shuffle.addEventListener("click", (e) => {
+    let randomMusic = songArray[Math.floor(Math.random() * songArray.length)];
+    if (shuffle.classList.contains("off")) {
+        shuffle.classList.replace("off", "on");
+        audio.src = randomMusic.url;
+        audio.play();
+    } else if (shuffle.classList.contains("on")) {
+        shuffle.classList.replace("on", "off");
+    };
+});
+
+
+// Fonction pour le bouton LOOP
+
+loop.addEventListener("click", (e) => {
+    if (loop.classList.contains("inactive")) {
+        loop.classList.replace("inactive", "active");
+        audio.loop = false;
+    } else if (loop.classList.contains("active")) {
+        loop.classList.replace("active", "active_one");
+        audio.loop = true;
+    } else if (loop.classList.contains("active_one")) {
+        loop.classList.replace("active_one", "inactive");
+        audio.loop = false;
+    };
+});
+
+
