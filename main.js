@@ -1,6 +1,7 @@
 // CONSTANTES ET VARIABLES
     // Boutons
 const hide = document.querySelector("#hide");
+const heart = document.querySelector(".heart");
 const playPauseButton = document.querySelector(".playPause");
 const shuffle = document.querySelector("#shuffle");
 const loop = document.querySelector("#loop");
@@ -45,8 +46,16 @@ let death = new Song ("1", "Death by Glamour", "Toby Fox", "Photos/death.webp", 
 let ezio = new Song("2","Ezio's Family", "Jesper Kyd", "Photos/ezio.jpg", "Tracks/ezio.mp3", "3:59");
 let colossus = new Song("3","Dark Colossus", "Rozen", "Photos/colossus.jpg", "Tracks/colossus.mp3", "5:02");
 let vordt = new Song("4","Vordt of the Boreal Valley", "Motoi Sakuraba", "Photos/DS.jpg", "Tracks/Vordt.mp3", "6:14");
+let hyrule = new Song("5", "Hyrule Castle", "Rozen", "Photos/Hyrule.jpg", "Tracks/Hyrule.mp3", "4:41");
+let advent = new Song ("6", "One-Winged Angel", "Nobuo Uematsu", "Photos/advent.jpg", "Tracks/advent.mp3", "6:07");
+let crypt = new Song ("7", "Mausoleum Mash Shopkeeper", "Danny Baranowski", "Photos/crypt.jpg", "Tracks/crypt.mp3", "2:55");
+let lullaby = new Song("8", "Lullaby of Woe", "Marcin Przybyłowicz", "Photos/lullaby.webp", "Tracks/lullaby.mp3", "2:30");
+let symphony = new Song ("9", "Symphony of the Boreal Wind", "Yu-peng Chen", "Photos/symphony.jpg", "Tracks/symphony.mp3", "4:51");
+let grimm = new Song("10", "The Grimm Troup", "Christopher Larkin", "Photos/grimm.jpg", "Tracks/grimm.mp3", "2:18");
+let arthas = new Song("11", "Arthas my Son", "WoW : Wrath of the Lich King OST", "Photos/arthas.jpg", "Tracks/arthas.mp3", "3:12");
+let garde = new Song("12", "Sovngarde", "The Elder Scrolls V : Skyrim OST", "Photos/sovngarde.jpg", "Tracks/Sovngarde.mp3", "3:36")
 
-let songArray = [death, ezio, colossus, vordt]
+let songArray = [death, ezio, colossus, vordt, hyrule, advent, crypt, lullaby, symphony, grimm, arthas, garde]
 
 
 // Mise en place de la liste de chansons
@@ -105,19 +114,28 @@ music.forEach(element => {
 // Quand la musique finit
 audio.addEventListener("ended", (e) => {
     let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
-    audio.src = songArray[indexMusic++].url;
-    audio.play();
 
-    albumCover.src = songArray[indexMusic-1].cover;
-    titleLeft.textContent = songArray[indexMusic-1].title;
-    artistLeft.textContent = songArray[indexMusic-1].artist;
+    if (indexTrack < songArray.length) {
+        audio.src = songArray[indexTrack++].url;
+        audio.play();
+    } else if(indexTrack > songArray.length-1 && loop.classList.contains("inactive")) {
+        playPauseButton.classList.replace("pause", "play");
+        audio.pause();
+    } else if (indexTrack > songArray.length-1 && loop.classList.contains("active")) {
+        songArray=[0];
+        audio.play();
+    };
 
-    titleRight.textContent = songArray[indexMusic-1].title + "   -   " + songArray[indexMusic-1].artist;
+    albumCover.src = songArray[indexTrack-1].cover;
+    titleLeft.textContent = songArray[indexTrack-1].title;
+    artistLeft.textContent = songArray[indexTrack-1].artist;
 
-    albumCoverSecond.src = songArray[indexMusic-1].cover;
-    titleBottom.textContent = songArray[indexMusic-1].title;
-    artistBottom.textContent = songArray[indexMusic-1].artist;
-    songTime.textContent = songArray[indexMusic-1].songDuration;
+    titleRight.textContent = songArray[indexTrack-1].title + "   -   " + songArray[indexTrack-1].artist;
+
+    albumCoverSecond.src = songArray[indexTrack-1].cover;
+    titleBottom.textContent = songArray[indexTrack-1].title;
+    artistBottom.textContent = songArray[indexTrack-1].artist;
+    songTime.textContent = songArray[indexTrack-1].songDuration;
 });
 
 
@@ -183,17 +201,23 @@ audio.addEventListener("loadedmetadata", (e) => {
     });
 });
 
+// Fonction pour le bouton LIKE
+// Ca me marche que pour le premier, à voir +tard
+    heart.addEventListener("click", (e) => {
+        if (heart.classList.contains("unlike")) {
+            heart.classList.replace("unlike", "like");
+        } else if (heart.classList.contains("like")) {
+            heart.classList.replace("like", "unlike");
+        };
+    });
+
 
 // Fonction pour le bouton HIDE
 
 hide.addEventListener("click", (e) => {
-    if (document.getElementById("cover").style.display = "flex") {
-        document.getElementById("cover").style.display = "none";
-        document.getElementById("list").style.width = "96%";
-    } else {
-        document.getElementById("cover").style.display = "flex";
-        document.getElementById("list").style.width = "50%";
-    };
+    document.getElementById("cover").classList.toggle("visible");
+    document.getElementById("cover").classList.toggle("invisible");
+    document.getElementById("list").classList.toggle("taille");
 });
 
 
@@ -227,38 +251,65 @@ stop.addEventListener("click", (e) => {
 // Fonction pour les bouton PREVIOUS ET NEXT
 
 // NEXT
+
+//         let i = songArray.lenght - 1 ; i>0 ; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         const temp = songArray[i];
+//         songArray[i] = songArray[j];
+//         songArray[j] = temp;
+//     };
+// }
+
 fastForward.addEventListener("click", (e) => {
     let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
 
-    if(indexTrack > songArray.length-1) {
+        // LOOP ALL
+    if(indexTrack > songArray.length-1 && loop.classList.contains("inactive")) {
         playPauseButton.classList.replace("pause", "play");
         audio.pause();
     } else if (playPauseButton.classList.contains("play")) {
-        playPauseButton.classList.replace("play", "pause")
-    };
+        playPauseButton.classList.replace("play", "pause");
+    } else if (indexTrack > songArray.length-1 && loop.classList.contains("active")) {
+        indexTrack=0;
+        audio.play()
+    } if (shuffle.classList.contains("on")) {
+        const j = Math.floor(Math.random() * (i + 1));
 
-    audio.src = songArray[indexTrack].url;
-    audio.play();
+            audio.src = songArray[j].url;
+            audio.play();
 
-    albumCover.src = songArray[indexTrack].cover;
-    titleLeft.textContent = songArray[indexTrack].title;
+        albumCover.src = songArray[indexTrack].cover;
+            titleLeft.textContent = songArray[indexTrack].title;
     artistLeft.textContent = songArray[indexTrack].artist;
     titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
     albumCoverSecond.src = songArray[indexTrack].cover;
     titleBottom.textContent = songArray[indexTrack].title;
     artistBottom.textContent = songArray[indexTrack].artist;
     songTime.textContent = songArray[indexTrack].songDuration;
+    } else {
+        audio.src = songArray[indexTrack].url;
+        audio.play();
+    
+        albumCover.src = songArray[indexTrack].cover;
+        titleLeft.textContent = songArray[indexTrack].title;
+        artistLeft.textContent = songArray[indexTrack].artist;
+        titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
+        albumCoverSecond.src = songArray[indexTrack].cover;
+        titleBottom.textContent = songArray[indexTrack].title;
+        artistBottom.textContent = songArray[indexTrack].artist;
+        songTime.textContent = songArray[indexTrack].songDuration;
+    };
 });
 
 // PREVIOUS
 rewind.addEventListener("click", (e) => {
     let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))-1;
 
-    if(indexTrack > songArray.length-1) {
+    if(indexTrack > songArray.length-1 && loop.classList.contains("inactive")) {
         playPauseButton.classList.replace("pause", "play");
         audio.pause();
     } else if (playPauseButton.classList.contains("play")) {
-        playPauseButton.classList.replace("play", "pause")
+        playPauseButton.classList.replace("play", "pause");
     };
 
     audio.src = songArray[indexTrack].url;
@@ -276,17 +327,26 @@ rewind.addEventListener("click", (e) => {
 
 
 // Fonction pour le bouton SHUFFLE
+// function shuffleArray() {
+//     for (let i = songArray.lenght - 1 ; i>0 ; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         const temp = songArray[i];
+//         songArray[i] = songArray[j];
+//         songArray[j] = temp;
+//     };
+// }
 
 shuffle.addEventListener("click", (e) => {
-    let randomMusic = songArray[Math.floor(Math.random() * songArray.length)];
+    // let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))-1;
+
     if (shuffle.classList.contains("off")) {
         shuffle.classList.replace("off", "on");
-        audio.src = randomMusic.url;
-        audio.play();
+
     } else if (shuffle.classList.contains("on")) {
         shuffle.classList.replace("on", "off");
     };
-});
+}
+);
 
 
 // Fonction pour le bouton LOOP
