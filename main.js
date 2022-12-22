@@ -251,15 +251,6 @@ stop.addEventListener("click", (e) => {
 // Fonction pour les bouton PREVIOUS ET NEXT
 
 // NEXT
-
-//         let i = songArray.lenght - 1 ; i>0 ; i--) {
-//         const j = Math.floor(Math.random() * (i + 1));
-//         const temp = songArray[i];
-//         songArray[i] = songArray[j];
-//         songArray[j] = temp;
-//     };
-// }
-
 fastForward.addEventListener("click", (e) => {
     let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))+1;
 
@@ -275,17 +266,17 @@ fastForward.addEventListener("click", (e) => {
     } if (shuffle.classList.contains("on")) {
         const j = Math.floor(Math.random() * (i + 1));
 
-            audio.src = songArray[j].url;
-            audio.play();
+        audio.src = songArray[j].url;
+        audio.play();
 
-        albumCover.src = songArray[indexTrack].cover;
-            titleLeft.textContent = songArray[indexTrack].title;
-    artistLeft.textContent = songArray[indexTrack].artist;
-    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
-    albumCoverSecond.src = songArray[indexTrack].cover;
-    titleBottom.textContent = songArray[indexTrack].title;
-    artistBottom.textContent = songArray[indexTrack].artist;
-    songTime.textContent = songArray[indexTrack].songDuration;
+        albumCover.src = songArray[j].cover;
+        titleLeft.textContent = songArray[j].title;
+        artistLeft.textContent = songArray[j].artist;
+        titleRight.textContent = songArray[j].title + "   -   " + songArray[j].artist;
+        albumCoverSecond.src = songArray[j].cover;
+        titleBottom.textContent = songArray[j].title;
+        artistBottom.textContent = songArray[j].artist;
+        songTime.textContent = songArray[j].songDuration;
     } else {
         audio.src = songArray[indexTrack].url;
         audio.play();
@@ -310,31 +301,21 @@ rewind.addEventListener("click", (e) => {
         audio.pause();
     } else if (playPauseButton.classList.contains("play")) {
         playPauseButton.classList.replace("play", "pause");
+    } else {
+        audio.src = songArray[indexTrack].url;
+        audio.play();
+    
+        albumCover.src = songArray[indexTrack].cover;
+        titleLeft.textContent = songArray[indexTrack].title;
+        artistLeft.textContent = songArray[indexTrack].artist;
+        titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
+        albumCoverSecond.src = songArray[indexTrack].cover;
+        titleBottom.textContent = songArray[indexTrack].title;
+        artistBottom.textContent = songArray[indexTrack].artist;
+        songTime.textContent = songArray[indexTrack].songDuration;
     };
-
-    audio.src = songArray[indexTrack].url;
-    audio.play();
-
-    albumCover.src = songArray[indexTrack].cover;
-    titleLeft.textContent = songArray[indexTrack].title;
-    artistLeft.textContent = songArray[indexTrack].artist;
-    titleRight.textContent = songArray[indexTrack].title + "   -   " + songArray[indexTrack].artist;
-    albumCoverSecond.src = songArray[indexTrack].cover;
-    titleBottom.textContent = songArray[indexTrack].title;
-    artistBottom.textContent = songArray[indexTrack].artist;
-    songTime.textContent = songArray[indexTrack].songDuration;
 });
 
-
-// Fonction pour le bouton SHUFFLE
-// function shuffleArray() {
-//     for (let i = songArray.lenght - 1 ; i>0 ; i--) {
-//         const j = Math.floor(Math.random() * (i + 1));
-//         const temp = songArray[i];
-//         songArray[i] = songArray[j];
-//         songArray[j] = temp;
-//     };
-// }
 
 shuffle.addEventListener("click", (e) => {
     // let indexTrack = songArray.findIndex(e => e.url == audio.src.substring(audio.src.indexOf("Tracks")))-1;
