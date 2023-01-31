@@ -1,6 +1,9 @@
 // CONSTANTES ET VARIABLES
     // Boutons
 const hide = document.querySelector("#hide");
+const hideRight = document.querySelector("#hide_right");
+const listButton = document.querySelector("#list_button");
+const coverButton = document.querySelector("#coverButton");
 const heart = document.querySelector(".heart");
 const playPauseButton = document.querySelector(".playPause");
 const shuffle = document.querySelector("#shuffle");
@@ -203,6 +206,7 @@ audio.addEventListener("loadedmetadata", (e) => {
 
 // Fonction pour le bouton LIKE
 // Ca me marche que pour le premier, à voir +tard
+// Ok bah ça ne marche plus du tout
     heart.addEventListener("click", (e) => {
         if (heart.classList.contains("unlike")) {
             heart.classList.replace("unlike", "like");
@@ -215,10 +219,64 @@ audio.addEventListener("loadedmetadata", (e) => {
 // Fonction pour le bouton HIDE
 
 hide.addEventListener("click", (e) => {
+    if (list.classList.contains("visible")) {
     document.getElementById("cover").classList.toggle("visible");
     document.getElementById("cover").classList.toggle("invisible");
     document.getElementById("list").classList.toggle("taille");
+} else if (list.classList.contains("invisible")) {
+    document.getElementById("list").classList.toggle("invisible");
+    document.getElementById("list").classList.toggle("visible");
+    document.getElementById("cover").classList.toggle("visible");
+    document.getElementById("cover").classList.toggle("invisible");
+    document.getElementById("list").classList.toggle("taille");
+}
 });
+
+hideRight.addEventListener("click", (e) => {
+    if (cover.classList.contains("visible")) {
+    document.getElementById("list").classList.toggle("visible");
+    document.getElementById("list").classList.toggle("invisible");
+    document.getElementById("cover").classList.toggle("taille");
+} else if (cover.classList.contains("invisible")) {
+    document.getElementById("cover").classList.toggle("invisible");
+    document.getElementById("cover").classList.toggle("visible");
+    document.getElementById("list").classList.toggle("visible");
+    document.getElementById("list").classList.toggle("invisible");
+    document.getElementById("cover").classList.toggle("taille");
+}
+});
+
+// hideRight.addEventListener("click", (e) => {
+//     document.getElementById("list").classList.toggle("visible");
+//     document.getElementById("list").classList.toggle("invisible");
+//     document.getElementById("cover").classList.toggle("taille");
+// });
+
+
+// Fonction pour les buttons LIST ET COVER dans la LEFT BAR
+
+// listButton.addEventListener("clic", (e) => {
+
+//     if (list.style.display == "none !important") {
+//         list.style.display="flex !important";
+//         cover.style.display="none !important";
+//     } else if (list.styple.display == "flex !important") {
+//         list.style.display="none !important";
+//         cover.style.display="flex !important";
+//     }
+
+// });
+
+// coverButton.addEventListener("clic", (e) => {
+
+//     if (list.style.display == "none !important") {
+//         list.style.display="flex !important";
+//         cover.style.display="none !important";
+//     } else if (list.styple.display == "flex !important") {
+//         list.style.display="none !important";
+//         cover.style.display="flex !important";
+//     }
+// });
 
 
 // Fonction pour le bouton PLAY/PAUSE

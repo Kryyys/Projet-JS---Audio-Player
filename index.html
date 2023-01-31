@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,10 @@
     <title>Player One</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <main>
@@ -18,28 +20,33 @@
 
             <div id="left_bar">
                 <span id="hide"></span>
+                <br>
+                <span id="hide_right"></span>
+                <br>                
+                <span id="list_button"></span>
+                <br>
+                <span id="cover_button"></span>
             </div>
 
             <div id="cover" class="visible">
-                <img src="" class="album_cover" width="475px" alt="">
+                <img src="Photos/image_accueil.png" class="album_cover" alt="">
                 <span id="song_title"></span>
                 <span id="artist_name"></span>
             </div>
 
-            <div id="list">
+            <div id="list" class="visible">
                 <div id="title">
                     <img src="Photos/sound_bar.png" width="75px" alt="">
-                    <span id="title_right"></span> 
+                    <span id="title_right"></span>
                 </div>
 
                 <div id="tracklist">
-                    <table cellspacing="0" cellpadding="0">
+                    <table cellspacing="0" cellpadding="0" class="table_music">
                         <thead>
                             <tr>
                                 <th id="head_number">#</th>
                                 <th id="head_title"> Titre</th>
                                 <th id="head_artist">Artiste</th>
-                                <th id="head_like">Like</th>
                             </tr>
                         </thead>
 
@@ -48,74 +55,122 @@
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
                             </tr>
                             <tr class="music">
                                 <td class="number"></td>
                                 <td class="title_track"></td>
                                 <td class="artist"></td>
-                                <td class="heart unlike"></td>
+
+                            </tr> 
+                        </tbody>
+                    </table>
+
+                    <table cellspacing="0" cellpadding="0" class="table_heart">
+                        <thead>
+                            <tr>
+                                <th id="head_like">Like</th>
                             </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            <tr class="music">
+                                <td class="heart unlike"></td>
+                            </tr> 
+                            
                         </tbody>
                     </table>
                 </div>
@@ -149,17 +204,18 @@
                     <span class="song_duration"></span>
                 </div>
 
-                <audio src="" preload="auto"></audio>
+                <audio src="Tracks/death.mp3" preload="auto"></audio>
 
             </div>
             <div id="sound">
-                <img src="Photos/sound.png" width="35px" >
-                <input type="range" id="volume" min="0" max="1" value="1" step="0.05"/>
+                <img src="Photos/sound.png" width="35px">
+                <input type="range" id="volume" min="0" max="1" value="1" step="0.05" />
             </div>
         </div>
 
     </main>
-    
+
     <script src="main.js"></script>
 </body>
+
 </html>

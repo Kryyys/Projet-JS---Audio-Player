@@ -27,6 +27,7 @@ main {
     border-bottom-left-radius: 15px;
 }
 
+
 /* HIDE BUTTON */
 
 #left_bar {
@@ -45,10 +46,74 @@ main {
     width: 55px;
     height: 55px;
     cursor: pointer;
+    display: flex;
+}
+
+#hide_right {
+    background-image: url(Photos/hide_right_grey.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    display: flex;
+}
+
+#list_button {
+    background-image: url(Photos/list_button_grey.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    display: none;
+}
+
+#cover_button {
+    background-image: url(Photos/album_cover_grey.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    display: none;
 }
 
 #hide:hover {
     background-image: url(Photos/hide_logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+}
+
+#hide_right:hover {
+    background-image: url(Photos/hide_logo_right.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+}
+
+#list_button:hover {
+    background-image: url(Photos/list_button.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+}
+
+#cover_button:hover {
+    background-image: url(Photos/album_cover_button.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50px;
@@ -66,6 +131,10 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#cover img {
+    width:475px;
 }
 
 #song_title {
@@ -126,10 +195,20 @@ main {
     width: 100%;
     color: white;
     cursor: pointer;
+    display: flex;
 }
 
 table {
     border: none;
+    width: 100%;
+}
+
+.table_music {
+    width: 90%;
+}
+
+.table_heart {
+    width: 10%;
 }
 
 thead {
@@ -443,5 +522,181 @@ tbody tr:nth-of-type(odd) {
     cursor: pointer;
 }
 
+@media screen and (min-width:951px) and (max-width:1300px) {
+
+    #hide {
+        display: none;
+    }
+
+    #hide_right {
+        display: none;
+    }
+
+    #list_button {
+        display: flex;
+    }
+
+    #cover_button {
+        display: flex;
+    }
+
+    #in_play {
+        display: none;
+    }
+
+    #button_nav {
+        width: 75%;
+        margin-left: 20px;
+    }
+
+    #sound {
+        width: 20%;
+        margin-right: 20px;
+    }
+
+    #list {
+        display: none !important;
+    }
+
+    #cover {
+        width: 100%;
+        display: flex !important;
+    }
+
+}
+
+@media screen and (min-width:821px) and (max-width:950px) {
+    
+    #hide {
+        display: none;
+    }
+
+    #hide_right {
+        display: none;
+    }
+
+    #list_button {
+        display: flex;
+    }
+
+    #cover_button {
+        display: flex;
+    }
+
+    #in_play {
+        display: none;
+    }
+
+    #button_nav {
+        width: 90%;
+        margin-left: 20px;
+        margin-left: 20px;
+    }
+
+    #sound {
+        width: 100%;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    #list {
+        display: none !important;
+    }
+
+    #cover {
+        width: 100%;
+        display: flex !important;
+    }
+
+
+    #nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 250px;
+    }
+}
+
+@media screen and (min-width:51px) and (max-width:820px) {
+    
+    #hide {
+        display: none;
+    }
+
+    #hide_right {
+        display: none;
+    }
+
+    #list_button {
+        display: flex;
+    }
+
+    #cover_button {
+        display: flex;
+    }
+
+    #in_play {
+        display: none;
+    }
+
+    #button_nav {
+        width: 90%;
+        margin-left: 20px;
+        margin-left: 20px;
+    }
+
+    #sound {
+        width: 100%;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    #list {
+        display: none !important;
+    }
+
+    #cover {
+        width: 100%;
+        display: flex !important;
+    }
+
+
+    #nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 250px;
+    }
+
+    #cover img {
+        width: 300px;
+    }
+
+    #big {
+        height: 550px;
+    }
+
+    #left_bar {
+        display: none;
+    }
+
+    main {
+        margin : 0 0 0 0;
+    }
+
+    #big, #nav {
+        width: 100%;
+    }
+
+    #shuffle, #loop {
+        display: none;
+    }
+
+    .play, .pause {
+        width: 40px;
+        height: 40px;
+    }
+
+}
 
 
